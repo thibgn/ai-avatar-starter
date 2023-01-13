@@ -1,0 +1,4 @@
+curl https://api-inference.huggingface.co/models/thibgn/thomgamb1-5 \
+        -X POST \
+        -d '{"inputs":"The answer to the universe is thomgamb."}' \
+        -H "Authorization: Bearer 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"
