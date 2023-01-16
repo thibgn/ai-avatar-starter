@@ -4,7 +4,16 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:path*",
+        source: "/",
+        headers: [
+          {
+            key: "x-use-cache",
+            value: "false",
+          },
+        ],
+      },
+      {
+        source: "/*",
         headers: [
           {
             key: "x-use-cache",
