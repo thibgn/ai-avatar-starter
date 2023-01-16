@@ -17,12 +17,6 @@ const Home = () => {
     });
   };
 
-  useEffect(() => {
-    window.alert = function () {
-      debugger;
-    };
-  });
-
   // Add useEffect here
   useEffect(() => {
     const runRetry = async () => {
@@ -100,6 +94,11 @@ const Home = () => {
     setIsGenerating(false);
   };
 
+  const generateSamePrompt = () => {
+    setInput(lastPrompt);
+    // generateAction();
+  };
+
   return (
     <div className="root">
       <Head>
@@ -115,7 +114,7 @@ const Home = () => {
             <h2>
               Make sure to include{" "}
               <span className="prompt-keyword">thomgamb</span> in the prompt to
-              create me in your image.
+              get an image of "me"
             </h2>
           </div>
           <div className="prompt-container">
@@ -136,19 +135,27 @@ const Home = () => {
                   {isGenerating ? (
                     <span className="loader"></span>
                   ) : (
-                    <p>Generate</p>
+                    <span>Generate</span>
                   )}
                 </div>
               </a>
+              {!isGenerating && lastPrompt && (
+                <a className="retry-button" onClick={generateSamePrompt}>
+                  <div className="generate">
+                    <span>Retry same prompt</span>
+                  </div>
+                </a>
+              )}
             </div>
-            {img && (
-              <div className="output-content">
-                <Image src={img} width={512} height={512} alt={input} />
-                <p>{lastPrompt}</p>
-              </div>
-            )}
           </div>
         </div>
+
+        {img && (
+          <div className="output-content">
+            <p>{lastPrompt}</p>
+            <Image src={img} width={512} height={512} alt={input} />
+          </div>
+        )}
       </div>
     </div>
   );

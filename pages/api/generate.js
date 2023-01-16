@@ -14,7 +14,10 @@ const generateAction = async (req, res) => {
   const response = await fetch(
     "https://api-inference.huggingface.co/models/thibgn/thomgamb1-5",
     {
-      headers: { Authorization: `Bearer ${process.env.HF_AUTH_KEY}` },
+      headers: {
+        Authorization: `Bearer ${process.env.HF_AUTH_KEY}`,
+        "x-use-cache": "false",
+      },
       method: "POST",
       body: JSON.stringify(data),
     }
